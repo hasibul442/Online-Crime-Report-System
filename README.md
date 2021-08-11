@@ -11,13 +11,13 @@ Online crime reporting system project is software developed for recording, monit
 3. Public Users
 
 # Admin Features
-➢ Add/Update/Display/Delete Police Officer (Police Station)
-➢ Add/Update/Display/Delete Citizen (User)
-➢ Update/Display/Delete Complaint
-➢ View/Delete Complaints Status
-➢ View/Delete Emergency Complaint
-➢ View Query
-➢ View Feedback
+1. Add/Update/Display/Delete Police Officer (Police Station)
+2. Add/Update/Display/Delete Citizen (User)
+3. Update/Display/Delete Complaint
+4. View/Delete Complaints Status
+5. View/Delete Emergency Complaint
+6. View Query
+7. View Feedback
 
 # Police Station Features
 
@@ -27,15 +27,15 @@ Online crime reporting system project is software developed for recording, monit
 
 # Citizen
 
-➢ Register
-➢ Login
-➢ Add Complaint
-➢ View Complaint Status
+1. Register
+2. Login
+3. Add Complaint
+4. View Complaint Status
 
 # Public (Without Create Account)
 
-➢ Add Emergency Complaint
-➢ Track Emergency Complaint Status
+1. Add Emergency Complaint
+2. Track Emergency Complaint Status
 
 # Brief overview of the technology
 
