@@ -6,9 +6,9 @@ Online crime reporting system project is software developed for recording, monit
 
 # System Users/Actors
 
-➢ Admin
-➢ Police Station
-➢ Public Users
+1. Admin
+2. Police Station
+3. Public Users
 
 # Admin Features
 ➢ Add/Update/Display/Delete Police Officer (Police Station)
