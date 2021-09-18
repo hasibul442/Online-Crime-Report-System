@@ -15,8 +15,4 @@ class Hotline extends Model
         'description',
         'slug',
     ];
-    public function getData()
-    {
-        return static::orderBy('created_at','desc')->get();
-    }
 }

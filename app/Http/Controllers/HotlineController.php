@@ -2,13 +2,17 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Category;
 use App\Models\Hotline;
 use Illuminate\Http\Request;
-use Yajra\DataTables\DataTables;
+use Illuminate\Support\Facades\Response;
+use Illuminate\Support\Str;
 
 class HotlineController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
     /**
      * Display a listing of the resource.
      *
@@ -17,31 +21,9 @@ class HotlineController extends Controller
     public function index()
     {
         $hotlines = Hotline::all();
-        return view('admin.hotline.hotline',compact('hotlines'));
+        return view('admin.hotline.hotline1',compact('hotlines'));
 
 
-    }
-    public function fetchdata()
-    {
-        $hotlines = Hotline::all();
-        return response()->json([
-            'hotlines'=>$hotlines,
-        ]);
-        // if ($request->ajax()) {
-        //     $data = Category::get();
-        //     return DataTables::of($data)
-        //             ->addIndexColumn()
-        //             ->addColumn('action', function($row){
-
-        //                    $btn = '<a href="javascript:void(0)" class="edit btn btn-primary btn-sm">View</a>';
-
-        //                     return $btn;
-        //             })
-        //             ->rawColumns(['action'])
-        //             ->make(true);
-        // }
-
-        //return view('admin.hotline.hotline');
     }
 
 
@@ -63,7 +45,16 @@ class HotlineController extends Controller
      */
     public function store(Request $request)
     {
-        //
+
+        $hotline = new Hotline;
+        $slug=Str::slug($request->title);
+        $hotline->title = $request->title;
+        $hotline->phone_number = $request->phone_number;
+        $hotline->description = $request->description;
+        $hotline->slug = $slug.'-'.date('ymdis').'-'.rand(0,999);
+        $hotline->save();
+        return response()->json(['success'=>'Data Add successfully.']);
+
     }
 
     /**
@@ -106,8 +97,11 @@ class HotlineController extends Controller
      * @param  \App\Models\Hotline  $hotline
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Hotline $hotline)
+    public function destroy($id)
     {
-        //
+        $hotlines = Hotline::find($id);
+        $hotlines->delete();
+        return response()->json(['success'=>'Data Delete successfully.']);
+
     }
 }

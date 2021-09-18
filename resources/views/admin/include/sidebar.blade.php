@@ -15,14 +15,20 @@
         </a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="index.html">
+        <a class="nav-link" href="{{ url('/admin/dashboard') }}">
           <span class="menu-title">Dashboard</span>
           <i class="mdi mdi-home menu-icon"></i>
         </a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="{{ route('helpline') }}">
+        <a class="nav-link" href="{{ url('/admin/hotlines') }}">
           <span class="menu-title">Hotline</span>
+          <i class="mdi mdi-phone-classic menu-icon"></i>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="{{ url('/admin/category') }}">
+          <span class="menu-title">Category</span>
           <i class="mdi mdi-phone-classic menu-icon"></i>
         </a>
       </li>
