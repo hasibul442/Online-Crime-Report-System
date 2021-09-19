@@ -15,9 +15,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-// Route::get('/', function () {
-//     return view('welcome');
-// });
+Route::get('/admin/police-station', function () {
+    return view('admin.police-station.police-station');
+});
 
 Auth::routes();
 //----------------Frontend Pages-----------------

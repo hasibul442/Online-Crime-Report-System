@@ -44,10 +44,10 @@
                                         @endif
                                     </td>
                                     <td>
-                                        <input type="checkbox" data-on="On" data-off="Off" data-width="100"
+                                        {{-- <input type="checkbox" data-on="On" data-off="Off" data-width="100"
                                             data-style="slow" data-toggle="toggle" data-onstyle="success"
                                             data-offstyle="danger" name="status1" class="status" id="status1"
-                                            data-id="{{ $item->id }}" {{ $item->status == 1 ? 'checked' : '' }}>
+                                            data-id="{{ $item->id }}" {{ $item->status == 1 ? 'checked' : '' }}> --}}
 
                                     </td>
                                     <td>
@@ -92,32 +92,25 @@
                         <div class="form-group">
                             <label>Category name<span class="text-danger">*</span></label>
                             <input type="text" name="name" class="form-control" placeholder="Category name"
-                                value="{{ old('name') }}" required />
+                                 required />
                         </div>
-                        <div class="form-group">
+                        {{-- <div class="form-group">
                             <label for="image">Image</label>
                             <input type="file" name="image" class="form-control" required>
-                        </div>
+                        </div> --}}
                         <div class="form-group">
                             <div class="form-group">
                                 <label>Select Parent Category<span class="text-danger">*</span></label>
-                                <select type="text" name="parent_id" style="width: 100%;" class="form-control">
+                                <select type="text" name="parent_id" style="width: 100%;" class="js-example-basic-single form-control">
                                     <option value="">None</option>
                                     @if ($categories->count() == !0)
-                                        @foreach (App\Models\Category::orderBy('name', 'desc')->where('parent_id', null)->get()
-        as $parent_cat)
+                                        @foreach (App\Models\Category::orderBy('name', 'desc')->where('parent_id', null)->get() as $parent_cat)
                                             <option class="font-weight-bold" value="{{ $parent_cat->id }}">
                                                 {{ $parent_cat->name }}</option>
-                                            {{-- @if (count($category->subcategory))
-                                                @include('backend.admin.presetdata.category.subcategoryList-option',['subcategories' => $category->subcategory])
-                                        @endif --}}
-                                            @foreach (App\Models\Category::orderBy('name', 'desc')->where('parent_id', $parent_cat->id)->get()
-        as $child_cat)
+                                            @foreach (App\Models\Category::orderBy('name', 'desc')->where('parent_id', $parent_cat->id)->get() as $child_cat)
                                                 <option value="{{ $child_cat->id }}">-->{{ $child_cat->name }}</option>
-                                                @foreach (App\Models\Category::orderBy('name', 'desc')->where('parent_id', $child_cat->id)->get()
-        as $child_sub_cat)-
-                                                    <option value="{{ $child_sub_cat->id }}">
-                                                        ----->{{ $child_sub_cat->name }}</option>
+                                                @foreach (App\Models\Category::orderBy('name', 'desc')->where('parent_id', $child_cat->id)->get() as $child_sub_cat)-
+                                                    <option value="{{ $child_sub_cat->id }}">----->{{ $child_sub_cat->name }}</option>
                                                 @endforeach
                                             @endforeach
                                         @endforeach
@@ -389,6 +382,10 @@
                 },
             });
         });
+
+        $(document).ready(function() {
+    $('.js-example-basic-single').select2();
+});
     </script>
 
 

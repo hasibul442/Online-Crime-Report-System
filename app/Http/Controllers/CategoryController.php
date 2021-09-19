@@ -58,17 +58,17 @@ class CategoryController extends Controller
         // }
         // else{
             $categories = new Category;
-            $slug=Str::slug($request->name);
+            // $slug=Str::slug($request->name);
 
             $categories->name = $request->name;
-            $categories->slug = $slug.'-'.date('ymdis').'-'.rand(0,999);
+            // $categories->slug = $slug.'-'.date('ymdis').'-'.rand(0,999);
             $categories->parent_id = $request->parent_id;
-             if($request->hasFile('image')){
-                $image = $request->file('image');
-                $image_name = time().'.'.$image->getClientOriginalExtension();
-                $image->move(public_path().'/admin/assets/images/category/',$image_name);
-                $categories->image = $image_name;
-             }
+            //  if($request->hasFile('image')){
+            //     $image = $request->file('image');
+            //     $image_name = time().'.'.$image->getClientOriginalExtension();
+            //     $image->move(public_path().'/admin/assets/images/category/',$image_name);
+            //     $categories->image = $image_name;
+            //  }
             $categories->save();
             return response()->json(['success'=>'Data Add successfully.']);
 
