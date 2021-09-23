@@ -50,3 +50,4 @@ Route::resource('/police-station', 'App\Http\Controllers\PoliceStationController
 Route::get('/admin/police/station', 'App\Http\Controllers\PoliceStationController@index')->name('police.division');
 Route::get('/admin/police/station/district/{id}', 'App\Http\Controllers\PoliceStationController@getdistrict')->name('police.district');
 Route::get('/admin/police/station/upazila/{id}', 'App\Http\Controllers\PoliceStationController@getupazilla')->name('police.upazila');
+Route::post('/admin/police/station/add', 'App\Http\Controllers\PoliceStationController@store')->name('policestation.add');

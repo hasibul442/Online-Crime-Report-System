@@ -8,4 +8,18 @@ use Illuminate\Database\Eloquent\Model;
 class Policestation extends Model
 {
     use HasFactory;
+    protected $table = 'policestations';
+    protected $fillable = ['district_id','division_id','upazila_id','address','name','phone_no','email'];
+    public function division()
+    {
+        return $this->belongsTo(Division::class,'division_id');
+    }
+    public function district()
+    {
+        return $this->belongsTo(District::class,'district_id');
+    }
+    public function upazila()
+    {
+        return $this->belongsTo(Upazila::class,'upazila_id');
+    }
 }

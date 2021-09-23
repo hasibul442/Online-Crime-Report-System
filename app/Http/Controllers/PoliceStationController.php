@@ -17,8 +17,9 @@ class PoliceStationController extends Controller
      */
     public function index()
     {
+        $policestation = Policestation::get();
         $division = Division::get();
-        return view('admin.police-station.police-station',compact('division'));
+        return view('admin.police-station.police-station',compact('division','policestation'));
     }
 
     public function getdistrict($id){
@@ -48,7 +49,16 @@ class PoliceStationController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $policestation = new Policestation;
+        $policestation->name = $request->name;
+        $policestation->phone_no = $request->phone_no;
+        $policestation->email = $request->email;
+        $policestation->division_id = $request->division_id;
+        $policestation->district_id = $request->district_id;
+        $policestation->upazila_id = $request->upazila_id;
+        $policestation->address = $request->address;
+        $policestation->save();
+        return response()->json(['success'=>'Data Add successfully.']);
     }
 
     /**

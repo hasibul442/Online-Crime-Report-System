@@ -16,6 +16,6 @@ class Upazila extends Model
 
     public function district()
     {
-        return $this->belongsTo(Division::class,'district_id');
+        return $this->belongsTo(District::class,'district_id');
     }
 }
