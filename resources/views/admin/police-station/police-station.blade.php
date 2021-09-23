@@ -1,81 +1,86 @@
 @extends('admin.layout.master')
 @section('content')
 
-<select name="division" id="বিভাগ" class="form-control বিভাগ input-lg">
+<select name="division" id="division_id" class="form-control">
     <option selected disabled>বিভাগ নির্বাচন করুন</option>
-   </select>
+    @foreach ($division as $item )
+            <option value="{{ $item->id }}">{{ $item->bn_name }}</option>
+    @endforeach
+</select>
    <br />
-   <select name="district" id="জেলা" class="form-control জেলা input-lg">
+   <select name="district" id="district_id" class="form-control">
     <option selected disabled>জেলা নির্বাচন করুন</option>
    </select>
    <br />
-   <select name="upazila" id="উপজেলা" class="form-control উপজেলা input-lg">
+   <select name="upazila" id="upazila_id" class="form-control">
     <option selected disabled>উপজেলা নির্বাচন করুন</option>
 </select>
 
 <script>
-    $(document).ready(function(){
+    $('#division_id').change(function() {
 
-     load_json_data('বিভাগ');
+    var divisionID = $(this).val();
 
-     function load_json_data(id, parent_id)
-     {
-      var html_code = '';
+    if (divisionID) {
+        //console.log(companyID);
+        $.ajax({
+            type: "GET",
+            url: "/admin/police/station/district/" + divisionID,
+            success: function(res) {
+                //console.log(res);
+                if (res) {
 
-      $.getJSON('categories.json', function(data){
+                    $("#district_id").empty();
+                    $("#district_id").append('<option>Select Position</option>');
+                    $.each(res, function(key, value) {
+                        $("#district_id").append('<option value="' + value.id + '">' + value.bn_name +
+                            '</option>');
+                            //console.log(value);
+                    });
 
-       html_code = '<option selected disabled>'+id+ ' নির্বাচন করুন</option>';
+                } else {
 
-       $.each(data, function(key, value){
+                    $("#district_id").empty();
+                }
+            }
+        });
+    } else {
 
-        if(id == 'বিভাগ')
-        {
-            // console.log(value.parent_id)
-         if(value.parent_id == null)
-         {
+        $("#district_id").empty();
+        $("#upazila_id").empty();
+    }
+    });
 
-          html_code += '<option  value="'+value.id+'">'+value.name+'</option>';
-          //console.log(value.name)
-         }
-        }
-        else
-        {
-         if(value.parent_id == parent_id)
-         {
-          html_code += '<option value="'+value.id+'">'+value.name+'</option>';
-          //console.log(value.name)
-         }
-        }
-       });
-       $('#'+id).html(html_code);
-       //console.log(html_code)
-      });
+    $('#district_id').on('change', function() {
 
-     }
+    var districtID = $(this).val();
+    // console.log(positionID);
+    if (districtID) {
 
-     $(document).on('change', '#বিভাগ', function(){
-      var division = $(this).val();
-      if(division != '')
-      {
-       load_json_data('জেলা', division);
-      }
-      else
-      {
-       $('#জেলা').html('<option selected disabled >জেলা নির্বাচন করুন</option>');
-       $('#উপজেলা').html('<option selected disabled >উপজেলা নির্বাচন করুন</option>');
-      }
-     });
-     $(document).on('change', '#জেলা', function(){
-      var upazila = $(this).val();
-      if(upazila != '')
-      {
-       load_json_data('উপজেলা', upazila);
-      }
-      else
-      {
-       $('#উপজেলা').html('<option selected disabled>উপজেলা নির্বাচন করুন</option>');
-      }
-     });
+        $.ajax({
+            type: "GET",
+            url: "/admin/police/station/upazila/" + districtID,
+            success: function(res) {
+                // console.log(res);
+                if (res) {
+                    $("#upazila_id").empty();
+                    $("#upazila_id").append('<option>Select Employee</option>');
+                    $.each(res, function(key, value) {
+                        $("#upazila_id").append('<option value="' + value.id + '">' + value.bn_name +
+                            '</option>');
+
+                    });
+
+                } else {
+
+                    $("#upazila_id").empty();
+                }
+            }
+        });
+    } else {
+
+        $("#upazila_id").empty();
+    }
     });
     </script>
 @endsection

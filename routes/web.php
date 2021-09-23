@@ -15,9 +15,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/admin/police-station', function () {
-    return view('admin.police-station.police-station');
-});
+
 
 Auth::routes();
 //----------------Frontend Pages-----------------
@@ -48,4 +46,7 @@ Route::get('/category-edit/{id}', 'App\Http\Controllers\CategoryController@edit'
 Route::post('/category-update/{id}', 'App\Http\Controllers\CategoryController@update');
 Route::get('/category/{id}/{catsts}','App\Http\Controllers\CategoryController@catstatus')->name('catstatus');
 
-
+Route::resource('/police-station', 'App\Http\Controllers\PoliceStationController');
+Route::get('/admin/police/station', 'App\Http\Controllers\PoliceStationController@index')->name('police.division');
+Route::get('/admin/police/station/district/{id}', 'App\Http\Controllers\PoliceStationController@getdistrict')->name('police.district');
+Route::get('/admin/police/station/upazila/{id}', 'App\Http\Controllers\PoliceStationController@getupazilla')->name('police.upazila');
