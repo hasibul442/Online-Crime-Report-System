@@ -36,7 +36,7 @@
                             <td>{{ ++$i }}</td>
                             {{-- <td>{{ substr($item->title,0,30) }}</td> --}}
                             <td style="max-width:100px;" class="text-wrap">{{ $item->title }}</td>
-                            <td class="text-right"><a href="tel:{{ $item->phone_number }}">{{ $item->phone_number }}</a></td>
+                            <td class="text-center"><a href="tel:{{ $item->phone_number }}">{{ $item->phone_number }}</a></td>
                             {{-- <td>{{ substr($item->description,0,30) }}</td> --}}
                             <td style="max-width:200px;" class="text-wrap">{{ $item->description}}</td>
                             <td>

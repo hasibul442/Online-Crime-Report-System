@@ -10,6 +10,10 @@ use Illuminate\Http\Request;
 
 class PoliceStationController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
     /**
      * Display a listing of the resource.
      *

@@ -83,8 +83,8 @@
                         </div>
 
                         <div class="form-group">
-                            <label>ইমেইল<span class="text-danger">*</span></label>
-                            <input type="email" name="email" id="email" class="form-control" placeholder="+88000" required />
+                            <label>ইমেইল</label>
+                            <input type="email" name="email" id="email" class="form-control"/>
                         </div>
 
                         <div class="form-group">

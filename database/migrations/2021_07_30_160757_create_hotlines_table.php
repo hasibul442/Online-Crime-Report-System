@@ -17,7 +17,7 @@ class CreateHotlinesTable extends Migration
             $table->bigIncrements('id');
             $table->string('title')->nullable();
             $table->string('phone_number')->nullable();
-            $table->string('description')->nullable();
+            $table->longText('description')->nullable();
             $table->string('slug')->nullable();
             $table->timestamps();
         });

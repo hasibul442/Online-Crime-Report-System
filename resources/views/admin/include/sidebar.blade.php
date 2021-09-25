@@ -27,6 +27,12 @@
         </a>
       </li>
       <li class="nav-item">
+        <a class="nav-link" href="{{ route('police.division') }}">
+          <span class="menu-title">Police Station</span>
+          <i class="mdi mdi-phone-classic menu-icon"></i>
+        </a>
+      </li>
+      <li class="nav-item">
         <a class="nav-link" href="{{ url('/admin/category') }}">
           <span class="menu-title">Category</span>
           <i class="mdi mdi-phone-classic menu-icon"></i>

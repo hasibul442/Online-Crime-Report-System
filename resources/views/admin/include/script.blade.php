@@ -30,17 +30,7 @@
       <script src="{{ asset('admin/assets/js/datatable/responsive.bootstrap.min.js') }}"></script> --}}
       <!-- End custom js for this page -->
 
-      <script>
-          $(document).ready(function() {
-              var table = $('.table1').DataTable({
-                  "autoWidth": true,
-                  "lengthMenu": [10, 15, 20, 25, 50, 100, 200],
 
-              });
-
-          });
-
-      </script>
 
       </body>
 
