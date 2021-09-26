@@ -51,3 +51,4 @@ Route::get('/admin/police/station', 'App\Http\Controllers\PoliceStationControlle
 Route::get('/admin/police/station/district/{id}', 'App\Http\Controllers\PoliceStationController@getdistrict')->name('police.district');
 Route::get('/admin/police/station/upazila/{id}', 'App\Http\Controllers\PoliceStationController@getupazilla')->name('police.upazila');
 Route::post('/admin/police/station/add', 'App\Http\Controllers\PoliceStationController@store')->name('policestation.add');
+Route::delete('/admin/police/station/delete/{id}','App\Http\Controllers\PoliceStationController@destroy');

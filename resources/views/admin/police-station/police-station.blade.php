@@ -56,9 +56,9 @@
 </div>
 
     {{-- Data add Model Start --}}
-    <div class="modal fade" id="policeStationAddModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+    <div class="modal fade bd-example-modal-lg" id="policeStationAddModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
         aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
             <div class="modal-content">
                 <div class="modal-header">
                     <div class="text-center">
@@ -72,46 +72,58 @@
                     <form class="forms-sample" id="policeStationForm" method="POST" enctype="multipart/form-data">
                         @csrf
                         {{-- <ul class="alert alert-warning d-none" id="save_errorList"></ul> --}}
-                        <div class="form-group">
-                            <label for="name">থানার নাম<span class="text-danger">*</span></label>
-                            <input type="text" name="name" id="name" class="form-control" placeholder="Title" required />
-                        </div>
-
-                        <div class="form-group">
-                            <label>ফোন নম্বর<span class="text-danger">*</span></label>
-                            <input type="text" name="phone_no" id="phone_no" class="form-control" placeholder="+88000" required />
-                        </div>
-
-                        <div class="form-group">
-                            <label>ইমেইল</label>
-                            <input type="email" name="email" id="email" class="form-control"/>
-                        </div>
-
-                        <div class="form-group">
-                            <label for="division_id">বিভাগ<span class="text-danger">*</span></label>
-                            <select name="division_id" id="division_id" class="form-control">
-                                <option selected disabled>বিভাগ নির্বাচন করুন</option>
-                                @foreach ($division as $item )
-                                        <option value="{{ $item->id }}">{{ $item->bn_name }}</option>
-                                @endforeach
-                            </select>
-                        </div>
-
-                        <div class="form-group">
-                            <label for="district_id">জেলা<span class="text-danger">*</span></label>
-                            <select name="district_id" id="district_id" class="form-control">
-                                <option selected disabled>জেলা নির্বাচন করুন</option>
-                            </select>
-                        </div>
-                        <div class="form-group">
-                            <label for="upazila_id">উপজেলা<span class="text-danger">*</span></label>
-                            <select name="upazila_id" id="upazila_id" class="form-control">
-                                <option selected disabled>উপজেলা নির্বাচন করুন</option>
-                            </select>
-                        </div>
-                        <div class="form-group">
-                            <label>ঠিকানা<span class="text-danger">*</span></label>
-                            <textarea type="text" name="address" rows="5" class="form-control" required></textarea>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="name">থানার নাম<span class="text-danger">*</span></label>
+                                    <input type="text" name="name" id="name" class="form-control" placeholder="Title" required />
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label>ফোন নম্বর<span class="text-danger">*</span></label>
+                                    <input type="text" name="phone_no" id="phone_no" class="form-control" placeholder="+88000" required />
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label>ইমেইল</label>
+                                    <input type="email" name="email" id="email" class="form-control"/>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="division_id">বিভাগ<span class="text-danger">*</span></label>
+                                    <select name="division_id" id="division_id" class="form-control">
+                                        <option selected disabled>বিভাগ নির্বাচন করুন</option>
+                                        @foreach ($division as $item )
+                                                <option value="{{ $item->id }}">{{ $item->bn_name }}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="district_id">জেলা<span class="text-danger">*</span></label>
+                                    <select name="district_id" id="district_id" class="form-control">
+                                        <option selected disabled>জেলা নির্বাচন করুন</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="upazila_id">উপজেলা<span class="text-danger">*</span></label>
+                                    <select name="upazila_id" id="upazila_id" class="form-control">
+                                        <option selected disabled>উপজেলা নির্বাচন করুন</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label>ঠিকানা<span class="text-danger">*</span></label>
+                                    <textarea type="text" name="address" rows="5" class="form-control" required></textarea>
+                                </div>
+                            </div>
                         </div>
 
                         <div class="float-right">
@@ -225,6 +237,28 @@
                     }
                 });
             });
+
+            $('body').on('click', '.deletebtn', function() {
+            var id = $(this).data("id");
+            var token = $("meta[name='csrf-token']").attr("content");
+            if (confirm("Are You sure want to delete !")) {
+                $.ajax({
+                    type: "DELETE",
+                    url: "/admin/police/station/delete/" + id,
+                    data: {
+                        "id": id,
+                        "_token": token,
+                        },
+                    success: function(data) {
+                        location.reload();
+                        console.log(data);
+                    },
+                    error: function(data) {
+                        console.log('Error:', data);
+                    }
+                });
+                }
+        });
 </script>
 <script>
     $(document).ready(function() {

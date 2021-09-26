@@ -35,6 +35,7 @@ class PoliceStationController extends Controller
         $upazilla = Upazila::where('district_id', $district_id)->get();
         return response()->json($upazilla);
     }
+
     /**
      * Show the form for creating a new resource.
      *
@@ -105,8 +106,10 @@ class PoliceStationController extends Controller
      * @param  \App\Models\Policestation  $policestation
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Policestation $policestation)
+    public function destroy($id)
     {
-        //
+        $policestation = Policestation::find($id);
+        $policestation->delete();
+        return response()->json(['success'=>'Data Delete successfully.']);
     }
 }
