@@ -73,55 +73,79 @@
                         @csrf
                         {{-- <ul class="alert alert-warning d-none" id="save_errorList"></ul> --}}
                         <div class="row">
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label for="name">থানার নাম<span class="text-danger">*</span></label>
-                                    <input type="text" name="name" id="name" class="form-control" placeholder="Title" required />
+                            <div class="col-sm-6">
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label for="name">থানার নাম<span class="text-danger">*</span></label>
+                                        <input type="text" name="name" id="name" class="form-control" placeholder="Title" required />
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label>ফোন নম্বর<span class="text-danger">*</span></label>
-                                    <input type="text" name="phone_no" id="phone_no" class="form-control" placeholder="+88000" required />
+
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label>ফোন নম্বর<span class="text-danger">*</span></label>
+                                        <input type="text" name="phone_no" id="phone_no" class="form-control" placeholder="+88000" required />
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label>ইমেইল</label>
-                                    <input type="email" name="email" id="email" class="form-control"/>
+
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label>ইমেইল</label>
+                                        <input type="email" name="email" id="email" class="form-control"/>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label for="division_id">বিভাগ<span class="text-danger">*</span></label>
-                                    <select name="division_id" id="division_id" class="form-control">
-                                        <option selected disabled>বিভাগ নির্বাচন করুন</option>
-                                        @foreach ($division as $item )
-                                                <option value="{{ $item->id }}">{{ $item->bn_name }}</option>
-                                        @endforeach
-                                    </select>
+
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label>পাসওয়ার্ড দিন</label>
+                                        <input type="password" name="password" id="password" class="form-control"/>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label for="district_id">জেলা<span class="text-danger">*</span></label>
-                                    <select name="district_id" id="district_id" class="form-control">
-                                        <option selected disabled>জেলা নির্বাচন করুন</option>
-                                    </select>
+
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label for="password-confirm" >পুনরায় পাসওয়ার্ড দিন</label>
+                                        <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password"/>
+                                    </div>
                                 </div>
+                                {{-- <input style="display: none" type="text" value="1" name="user_type" class="form-control"/> --}}
                             </div>
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label for="upazila_id">উপজেলা<span class="text-danger">*</span></label>
-                                    <select name="upazila_id" id="upazila_id" class="form-control">
-                                        <option selected disabled>উপজেলা নির্বাচন করুন</option>
-                                    </select>
+                            <div class="col-sm-6">
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label for="division_id">বিভাগ<span class="text-danger">*</span></label>
+                                        <select name="division_id" id="division_id" class="form-control">
+                                            <option selected disabled>বিভাগ নির্বাচন করুন</option>
+                                            @foreach ($division as $item )
+                                                    <option value="{{ $item->id }}">{{ $item->bn_name }}</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label>ঠিকানা<span class="text-danger">*</span></label>
-                                    <textarea type="text" name="address" rows="5" class="form-control" required></textarea>
+
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label for="district_id">জেলা<span class="text-danger">*</span></label>
+                                        <select name="district_id" id="district_id" class="form-control">
+                                            <option selected disabled>জেলা নির্বাচন করুন</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label for="upazila_id">উপজেলা<span class="text-danger">*</span></label>
+                                        <select name="upazila_id" id="upazila_id" class="form-control">
+                                            <option selected disabled>উপজেলা নির্বাচন করুন</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label>ঠিকানা<span class="text-danger">*</span></label>
+                                        <textarea type="text" name="address" rows="5" class="form-control" required></textarea>
+                                    </div>
                                 </div>
                             </div>
                         </div>
