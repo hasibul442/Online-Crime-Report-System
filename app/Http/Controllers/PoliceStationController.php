@@ -6,7 +6,9 @@ use App\Models\District;
 use App\Models\Division;
 use App\Models\Policestation;
 use App\Models\Upazila;
+use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 
 class PoliceStationController extends Controller
 {
@@ -54,7 +56,15 @@ class PoliceStationController extends Controller
      */
     public function store(Request $request)
     {
+        $users= new User;
+        $users->name = $request->name;
+        $users->email = $request->email;
+        $users->password = Hash::make($request['password']);
+        $users->user_type = 'police_station';
+        $users->save();
+
         $policestation = new Policestation;
+        $policestation->user_id = $users->id;
         $policestation->name = $request->name;
         $policestation->phone_no = $request->phone_no;
         $policestation->email = $request->email;
@@ -63,6 +73,9 @@ class PoliceStationController extends Controller
         $policestation->upazila_id = $request->upazila_id;
         $policestation->address = $request->address;
         $policestation->save();
+
+
+
         return response()->json(['success'=>'Data Add successfully.']);
     }
 
