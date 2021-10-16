@@ -104,4 +104,5 @@ class HotlineController extends Controller
         return response()->json(['success'=>'Data Delete successfully.']);
 
     }
+    
 }

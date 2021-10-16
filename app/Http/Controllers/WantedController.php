@@ -7,6 +7,10 @@ use Illuminate\Http\Request;
 
 class WantedController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
     /**
      * Display a listing of the resource.
      *
@@ -14,7 +18,8 @@ class WantedController extends Controller
      */
     public function index()
     {
-        //
+        $wantedlist = Wanted::get();
+        return view('admin.wantedlist.wantedlist',compact('wantedlist'));
     }
 
     /**
@@ -24,7 +29,7 @@ class WantedController extends Controller
      */
     public function create()
     {
-        //
+
     }
 
     /**
@@ -35,7 +40,21 @@ class WantedController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $wanted = new Wanted;
+        $wanted->name = $request->name;
+        $wanted->father_name = $request->father_name;
+        $wanted->address = $request->address;
+        $wanted->gander = $request->gander;
+        $wanted->details = $request->details;
+        $wanted->status = '1';
+        if($request->hasFile('photo')){
+            $image = $request->file('photo');
+            $image_name = time().'.'.$image->getClientOriginalExtension();
+            $image->move(public_path().'/admin/assets/images/wantedlist/',$image_name);
+            $wanted->photo = $image_name;
+            }
+        $wanted->save();
+        return response()->json(['success'=>'Data Add successfully.']);
     }
 
     /**
@@ -78,8 +97,27 @@ class WantedController extends Controller
      * @param  \App\Models\Wanted  $wanted
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Wanted $wanted)
+    public function destroy($id)
     {
-        //
+        $wanted = Wanted::find($id);
+        if (!is_null($wanted)) {
+            if(!is_null($wanted->photo)){
+                $image_path = public_path().'/admin/assets/images/wantedlist/'.$wanted->photo;
+                unlink($image_path);
+                $wanted->delete();
+                return response()->json(['success'=>'Data Delete successfully.']);
+            }
+            else{
+                $wanted->delete();
+                return response()->json(['success'=>'Data Delete successfully.']);
+            }
+        }
+    }
+
+    public function wantedstatusstatus($id,$status){
+        $wanted = Wanted::find($id);
+        $wanted->status = $status;
+        $wanted->update();
+        return response()->json(['success'=>'Status changed successfully.']);
     }
 }

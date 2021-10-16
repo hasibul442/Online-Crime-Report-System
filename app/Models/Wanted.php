@@ -8,11 +8,12 @@ use Illuminate\Database\Eloquent\Model;
 class Wanted extends Model
 {
     use HasFactory;
-    protected $tabel='wantedcrimanls';
+    protected $tabel='wanteds';
     protected $fillable = ['name',
     'father_name',
     'address',
     'gander',
     'photo',
-    'details'];
+    'details',
+    'status'];
 }

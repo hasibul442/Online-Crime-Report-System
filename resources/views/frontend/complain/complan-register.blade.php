@@ -46,7 +46,7 @@
                             <hr>
                             <li>Hotlines</li>
                             <hr>
-                            <li>Hotlines</li>
+                            <li>Wanted List</li>
                             <hr>
                         </ul>
                     </div>

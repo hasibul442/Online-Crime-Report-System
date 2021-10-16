@@ -26,7 +26,7 @@ class FrontpageController extends Controller
     }
     public function complaint()
     {
-        return view('frontend.complaint');
+        return view('frontend.complain.complaint');
     }
     public function policestation()
     {
@@ -35,6 +35,10 @@ class FrontpageController extends Controller
     public function helpline()
     {
         return view('frontend.helpline');
+    }
+    public function wantedlist()
+    {
+        return view('frontend.wantedcriminal');
     }
 
     /**

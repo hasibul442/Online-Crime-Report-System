@@ -26,6 +26,7 @@ Route::get('/casestatus', 'App\Http\Controllers\FrontpageController@casestatus')
 Route::get('/complaint', 'App\Http\Controllers\FrontpageController@complaint')->name('complaint');
 Route::get('/policestation', 'App\Http\Controllers\FrontpageController@policestation')->name('policestation');
 Route::get('/hotline', 'App\Http\Controllers\FrontpageController@helpline')->name('helpline');
+Route::get('/wantedcriminallist', 'App\Http\Controllers\FrontpageController@wantedlist')->name('wantedlist');
 
 
 //----------------Admin Panel Pages-----------------
@@ -52,3 +53,9 @@ Route::get('/admin/police/station/district/{id}', 'App\Http\Controllers\PoliceSt
 Route::get('/admin/police/station/upazila/{id}', 'App\Http\Controllers\PoliceStationController@getupazilla')->name('police.upazila');
 Route::post('/admin/police/station/add', 'App\Http\Controllers\PoliceStationController@store')->name('policestation.add');
 Route::delete('/admin/police/station/delete/{id}','App\Http\Controllers\PoliceStationController@destroy');
+
+Route::resource('/wantedlist', 'App\Http\Controllers\WantedController');
+Route::get('/admin/wantedlist', 'App\Http\Controllers\WantedController@index')->name('wanted.list');
+Route::post('/admin/wantedlist-add', 'App\Http\Controllers\WantedController@store');
+Route::delete('/admin/wantedlist/delete/{id}','App\Http\Controllers\WantedController@destroy');
+Route::get('/admin/wantedlist/{id}/{catsts}','App\Http\Controllers\WantedController@wantedstatusstatus')->name('product-status');
