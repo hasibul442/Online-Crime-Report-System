@@ -1,6 +1,6 @@
 @extends('frontend.layout.master')
 @section('content')
-
+<img src="{{ asset('admin/assets/images/default/en.png') }}" alt="" class="img-fluid w-100">
   <!-- Categories section-->
   <section class="pb-5 pt-5">
     <div class="container pb-5">
@@ -19,7 +19,7 @@
                           <svg class="svg-icon mb-3">
                             <use xlink:href="#pie-chart-1"> </use>
                           </svg>
-                      <h2 class="h5"> <a class="stretched-link reset-anchor-inherit" href="{{ route('emergency') }}">Emergency</a></h2>
+                      <h2 class="h5"> <a class="stretched-link reset-anchor-inherit" href="{{ route('general.diary') }}">সাধারন ডায়েরী</a></h2>
                       {{-- <p class="categories-item-number small mb-0">2 Items</p> --}}
                     </div>
                   </div>
@@ -30,7 +30,7 @@
                             <svg class="svg-icon mb-3">
                               <use xlink:href="#mental-health-1"> </use>
                             </svg>
-                        <h2 class="h5"> <a class="stretched-link reset-anchor-inherit" href="{{ route('complaint') }}">Complaint</a></h2>
+                        <h2 class="h5"> <a class="stretched-link reset-anchor-inherit" href="{{ route('complaint') }}">অভিযোগ</a></h2>
                         {{-- <p class="categories-item-number small mb-0">2 Items</p> --}}
                       </div>
                     </div>

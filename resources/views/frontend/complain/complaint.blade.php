@@ -1,6 +1,7 @@
 @extends('frontend.layout.master')
 @section('content')
-  <!-- Categories section-->
+
+
   <img src="{{ asset('admin/assets/images/default/police-com-banner.jpg') }}" alt="" class="img-fluid">
   <section class="pb-5 pt-5">
     <div class="container pb-5">
@@ -30,7 +31,7 @@
                         </ul>
 
                         <div class="float-right">
-                            <a href="" class="btn btn-primary">আপনার অভিযোগ<br>(Complaint)</a>
+                            <a href="{{ route('complaint_reg')}}" class="btn btn-primary">আপনার অভিযোগ<br>(Complaint)</a>
                         </div>
                     </div>
                 </div>

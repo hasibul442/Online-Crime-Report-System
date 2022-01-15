@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateComplainsTable extends Migration
+class CreateGdsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,19 +13,21 @@ class CreateComplainsTable extends Migration
      */
     public function up()
     {
-        Schema::create('complains', function (Blueprint $table) {
+        Schema::create('gds', function (Blueprint $table) {
             $table->increments('id');
             $table->unsignedInteger('division_id');
             $table->unsignedInteger('district_id');
             $table->unsignedInteger('upazila_id');
             $table->unsignedInteger('police_station');
 
-            $table->string('complain_no')->nullable();
+            $table->string('gd_no')->nullable();
             $table->string('name')->nullable();
             $table->string('father_name')->nullable();
             $table->string('nid')->nullable();
             $table->string('phone_no')->nullable();
             $table->string('email')->nullable();
+            $table->string('subject')->nullable();
+            $table->string('type')->nullable();
             $table->longText('description')->nullable();
             $table->string('document')->nullable();
             $table->string('status')->nullable();
@@ -46,6 +48,6 @@ class CreateComplainsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('complains');
+        Schema::dropIfExists('gds');
     }
 }

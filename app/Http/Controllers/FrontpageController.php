@@ -2,8 +2,16 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\ComplainMail;
+use App\Models\Complain;
+use App\Models\District;
+use App\Models\Division;
+use App\Models\Policestation;
+use App\Models\Upazila;
 use Facade\FlareClient\View;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Str;
 
 class FrontpageController extends Controller
 {
@@ -16,9 +24,13 @@ class FrontpageController extends Controller
     {
         return view('frontend.home');
     }
-    public function emergency()
+    public function general_diary()
     {
-        return view('frontend.emergency');
+        return view('frontend.general.general_diary');
+    }
+    public function gd_sample()
+    {
+        return view('frontend.general.gd_sample');
     }
     public function casestatus()
     {
@@ -39,6 +51,61 @@ class FrontpageController extends Controller
     public function wantedlist()
     {
         return view('frontend.wantedcriminal');
+    }
+    public function expatriate()
+    {
+        return view('frontend.expatriate.expatriate');
+    }
+    public function complaint_reg()
+    {
+        $division = Division::get();
+        return view('frontend.complain.complan-register',compact('division'));
+    }
+    // public function getdivision()
+    // {
+    //     $division = Division::get();
+    //     return view('frontend.complain.complan-register',compact('division'));
+    // }
+    public function getdistrict($id){
+        $district = District::where('division_id', $id)->get();
+        return response()->json($district);
+    }
+
+    public function getupazilla($district_id){
+        $upazilla = Upazila::where('district_id', $district_id)->get();
+        return response()->json($upazilla);
+    }
+    public function getthana($upazila_id){
+        $policestation = Policestation::where('upazila_id', $upazila_id)->get();
+        return response()->json($policestation);
+    }
+
+    public function complainstore(Request $request)
+    {
+        $slug = Str::slug($request->name);
+        $complain = new Complain;
+        $complain->division_id = $request->division_id;
+        $complain->district_id = $request->district_id;
+        $complain->upazila_id = $request->upazila_id;
+        $complain->police_station = $request->police_station;
+        $complain->complain_no = date('ymdis').'-'.rand(0,999);
+        $complain->name = $request->name;
+        $complain->father_name = $request->father_name;
+        $complain->nid = $request->nid;
+        $complain->phone_no = $request->phone_no;
+        $complain->email = $request->email;
+        $complain->description = $request->description;
+        $complain->document = $request->document;
+        $complain->status = "Pending";
+        $complain->slug = $slug.'-'.date('ymdis').'-'.rand(0,999);
+
+        $complain->save();
+        $this->sendcomplaincode($complain);
+        return response()->json(['success'=>'Data Add successfully.']);
+
+    }
+    public function sendcomplaincode($complain){
+        Mail::to($complain->email)->send(new ComplainMail($complain));
     }
 
     /**

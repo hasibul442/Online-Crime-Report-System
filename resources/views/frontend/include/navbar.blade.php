@@ -5,31 +5,31 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav ml-auto">
             <li class="nav-item">
-                  <!-- Navbar link--><a class="nav-link active" href="{{ route('home') }}">Home</a>
+                  <!-- Navbar link--><a class="nav-link active" href="{{ route('home') }}">হোম পেজ</a>
             </li>
             <li class="nav-item">
-                  <!-- Navbar link--><a class="nav-link" href="category.html">News</a>
+                  <!-- Navbar link--><a class="nav-link" href="#">ব্লগ</a>
             </li>
             <li class="nav-item">
-                  <!-- Navbar link--><a class="nav-link" href="detail.html">Notice</a>
+                  <!-- Navbar link--><a class="nav-link" href="#">প্রবাসী হেল্প</a>
             </li>
-            <li class="nav-item dropdown"><a class="nav-link dropdown-toggle" id="pages" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Service</a>
+            <li class="nav-item dropdown"><a class="nav-link dropdown-toggle" id="pages" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">পরিষেবা</a>
               <div class="dropdown-menu mt-lg-3">
-                <a class="dropdown-item" href="{{ route('emergency') }}">Emergency</a>
-                <a class="dropdown-item" href="{{ route('complaint') }}">Complaint</a>
-                <a class="dropdown-item" href="{{ route('casestatus') }}">Case Status</a>
-                <a class="dropdown-item" href="{{ route('policestation') }}">Police Station</a>
-                <a class="dropdown-item" href="{{ route('helpline') }}">Help Line</a>
+                <a class="dropdown-item" href="{{ route('general.diary') }}">সাধারন ডায়েরী</a>
+                <a class="dropdown-item" href="{{ route('complaint') }}">অভিযোগ</a>
+                <a class="dropdown-item" href="{{ route('casestatus') }}">মামলার অবস্থা</a>
+                <a class="dropdown-item" href="{{ route('policestation') }}">থানা</a>
+                <a class="dropdown-item" href="{{ route('helpline') }}">সকল হেল্প লাইন</a>
                 {{-- <a class="dropdown-item" href="detail.html">Detail</a> --}}
             </div>
             </li>
-            <li class="nav-item dropdown"><a class="nav-link dropdown-toggle" id="pages" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Account</a>
+            {{-- <li class="nav-item dropdown"><a class="nav-link dropdown-toggle" id="pages" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Account</a>
               <div class="dropdown-menu mt-lg-3">
                 <a class="dropdown-item" href="index.html">Login</a>
                 <a class="dropdown-item" href="category.html">Create Account</a>
-                {{-- <a class="dropdown-item" href="detail.html">Detail</a> --}}
+
             </div>
-            </li>
+            </li> --}}
             {{-- <li class="nav-item ml-lg-2 py-2 py-lg-0"><a class="btn btn-primary" href="#listingModal" data-toggle="modal">Add listing</a></li> --}}
           </ul>
         </div>

@@ -21,20 +21,29 @@ Auth::routes();
 //----------------Frontend Pages-----------------
 Route::get('/', 'App\Http\Controllers\FrontpageController@index')->name('home');
 Route::get('/home', 'App\Http\Controllers\FrontpageController@index');
-Route::get('/emergency', 'App\Http\Controllers\FrontpageController@emergency')->name('emergency');
+
+Route::get('/general-diary', 'App\Http\Controllers\FrontpageController@general_diary')->name('general.diary');
+Route::get('/general-diary/sample', 'App\Http\Controllers\FrontpageController@gd_sample')->name('gd_sample');
+
 Route::get('/casestatus', 'App\Http\Controllers\FrontpageController@casestatus')->name('casestatus');
 Route::get('/complaint', 'App\Http\Controllers\FrontpageController@complaint')->name('complaint');
 Route::get('/policestation', 'App\Http\Controllers\FrontpageController@policestation')->name('policestation');
 Route::get('/hotline', 'App\Http\Controllers\FrontpageController@helpline')->name('helpline');
 Route::get('/wantedcriminallist', 'App\Http\Controllers\FrontpageController@wantedlist')->name('wantedlist');
+Route::get('/expatriate', 'App\Http\Controllers\FrontpageController@expatriate')->name('expatriate');
 
+Route::get('/complaint/registration', 'App\Http\Controllers\FrontpageController@complaint_reg')->name('complaint_reg');
+Route::get('/complaint/registration/district/{id}', 'App\Http\Controllers\FrontpageController@getdistrict')->name('police.district');
+Route::get('/complaint/registration/upazila/{id}', 'App\Http\Controllers\FrontpageController@getupazilla')->name('police.upazila');
+Route::get('/complaint/registration/policestation/{id}', 'App\Http\Controllers\FrontpageController@getthana');
+Route::post('/complaint/registration/add', 'App\Http\Controllers\FrontpageController@complainstore');
 
 //----------------Admin Panel Pages-----------------
 Route::get('/admin/dashboard', [App\Http\Controllers\HomeController::class, 'index'])->name('dashboard');
 
 Route::resource('/admin/hotlines', 'App\Http\Controllers\HotlineController');
 Route::get('/admin/hotlines', 'App\Http\Controllers\HotlineController@index')->name('hotline');
-Route::post('/hotlines-add', 'App\Http\Controllers\HotlineController@store')->name('hotline.add');
+
 Route::delete('/admin/hotlines/delete/{id}','App\Http\Controllers\HotlineController@destroy');
 
 
