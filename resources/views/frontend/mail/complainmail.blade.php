@@ -9,12 +9,12 @@
 <body>
 
     <div class="container-fluid">
-        <h5 class="text-center">অভিনন্দন, আপনার অভিযোগটি নিবন্ধিত হয়েছে। অভিযোগের স্ট্যাটাস দেখার জন্য নিচের নাম্বারটি ব্যবহার করুন। অভিযোগের বিবরণ</h5>
+        <h5 class="text-center">অভিনন্দন, আপনার অভিযোগটি নিবন্ধিত হয়েছে। অভিযোগের স্ট্যাটাস দেখার জন্য নিচের নাম্বারটি ব্যবহার করুন।</h5>
         <br>
         <p class="text-center h1 text-success">{{ $complain->complain_no }}</p>
 
         <h4>অভিযোগের বিবরণ:</h4>
-        <p>{{ $complain->description }}</p>
+        <p>{!! $complain->description !!}</p>
     </div>
 
 

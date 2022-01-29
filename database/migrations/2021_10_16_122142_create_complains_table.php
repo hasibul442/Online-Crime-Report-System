@@ -26,6 +26,8 @@ class CreateComplainsTable extends Migration
             $table->string('nid')->nullable();
             $table->string('phone_no')->nullable();
             $table->string('email')->nullable();
+            $table->string('subject')->nullable();
+            $table->string('type')->nullable();
             $table->longText('description')->nullable();
             $table->string('document')->nullable();
             $table->string('status')->nullable();

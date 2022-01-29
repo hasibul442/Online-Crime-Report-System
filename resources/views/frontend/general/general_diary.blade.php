@@ -31,8 +31,8 @@
                       </ol>
 
                       <div class="float-right">
-                          <a href="#" class="btn btn-info">জিডির নমুনা</a>
-                          <a href="#" class="btn btn-primary">জিডি</a>
+                          <a href="{{route('gd_sample')}}" class="btn btn-info">জিডির নমুনা</a>
+                          <a href="{{ route('general_diary_register') }}" class="btn btn-primary">জিডি</a>
                       </div>
                   </div>
               </div>

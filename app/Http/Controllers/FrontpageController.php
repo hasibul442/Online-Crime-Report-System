@@ -28,6 +28,11 @@ class FrontpageController extends Controller
     {
         return view('frontend.general.general_diary');
     }
+    public function general_diary_register()
+    {
+        $division = Division::get();
+        return view('frontend.general.gd_reg',compact('division'));
+    }
     public function gd_sample()
     {
         return view('frontend.general.gd_sample');
@@ -94,10 +99,16 @@ class FrontpageController extends Controller
         $complain->nid = $request->nid;
         $complain->phone_no = $request->phone_no;
         $complain->email = $request->email;
+        $complain->type = "Complain";
         $complain->description = $request->description;
-        $complain->document = $request->document;
         $complain->status = "Pending";
         $complain->slug = $slug.'-'.date('ymdis').'-'.rand(0,999);
+        if($request->hasFile('document')){
+            $image = $request->file('document');
+            $image_name = time().'.'.$image->getClientOriginalExtension();
+            $image->move(public_path().'/admin/assets/complain/',$image_name);
+            $complain->document = $image_name;
+            }
 
         $complain->save();
         $this->sendcomplaincode($complain);

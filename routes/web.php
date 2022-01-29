@@ -24,6 +24,7 @@ Route::get('/home', 'App\Http\Controllers\FrontpageController@index');
 
 Route::get('/general-diary', 'App\Http\Controllers\FrontpageController@general_diary')->name('general.diary');
 Route::get('/general-diary/sample', 'App\Http\Controllers\FrontpageController@gd_sample')->name('gd_sample');
+Route::get('/general-diary/register', 'App\Http\Controllers\FrontpageController@general_diary_register')->name('general_diary_register');
 
 Route::get('/casestatus', 'App\Http\Controllers\FrontpageController@casestatus')->name('casestatus');
 Route::get('/complaint', 'App\Http\Controllers\FrontpageController@complaint')->name('complaint');
