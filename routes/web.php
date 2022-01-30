@@ -4,16 +4,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
-*/
+
 
 
 
@@ -21,17 +12,18 @@ Auth::routes();
 //----------------Frontend Pages-----------------
 Route::get('/', 'App\Http\Controllers\FrontpageController@index')->name('home');
 Route::get('/home', 'App\Http\Controllers\FrontpageController@index');
-
-Route::get('/general-diary', 'App\Http\Controllers\FrontpageController@general_diary')->name('general.diary');
-Route::get('/general-diary/sample', 'App\Http\Controllers\FrontpageController@gd_sample')->name('gd_sample');
-Route::get('/general-diary/register', 'App\Http\Controllers\FrontpageController@general_diary_register')->name('general_diary_register');
-
 Route::get('/casestatus', 'App\Http\Controllers\FrontpageController@casestatus')->name('casestatus');
 Route::get('/complaint', 'App\Http\Controllers\FrontpageController@complaint')->name('complaint');
 Route::get('/policestation', 'App\Http\Controllers\FrontpageController@policestation')->name('policestation');
 Route::get('/hotline', 'App\Http\Controllers\FrontpageController@helpline')->name('helpline');
 Route::get('/wantedcriminallist', 'App\Http\Controllers\FrontpageController@wantedlist')->name('wantedlist');
 Route::get('/expatriate', 'App\Http\Controllers\FrontpageController@expatriate')->name('expatriate');
+
+Route::get('/general-diary', 'App\Http\Controllers\FrontpageController@general_diary')->name('general.diary');
+Route::get('/general-diary/sample', 'App\Http\Controllers\FrontpageController@gd_sample')->name('gd_sample');
+Route::get('/general-diary/register', 'App\Http\Controllers\FrontpageController@general_diary_register')->name('general_diary_register');
+Route::post('/general-diary/register/add', 'App\Http\Controllers\FrontpageController@gdstore');
+
 
 Route::get('/complaint/registration', 'App\Http\Controllers\FrontpageController@complaint_reg')->name('complaint_reg');
 Route::get('/complaint/registration/district/{id}', 'App\Http\Controllers\FrontpageController@getdistrict')->name('police.district');
@@ -44,7 +36,6 @@ Route::get('/admin/dashboard', [App\Http\Controllers\HomeController::class, 'ind
 
 Route::resource('/admin/hotlines', 'App\Http\Controllers\HotlineController');
 Route::get('/admin/hotlines', 'App\Http\Controllers\HotlineController@index')->name('hotline');
-
 Route::delete('/admin/hotlines/delete/{id}','App\Http\Controllers\HotlineController@destroy');
 
 

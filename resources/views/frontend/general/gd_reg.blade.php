@@ -93,6 +93,12 @@
                                 </div>
                                 <div class="col-md-12">
                                     <div class="form-group">
+                                        <label for="subject">বিষয়<span class="text-danger">*</span></label>
+                                        <input type="text" name="subject" id="subject" class="form-control" required>
+                                    </div>
+                                </div>
+                                <div class="col-md-12">
+                                    <div class="form-group">
                                         <label for="email">বর্ণনা<span class="text-danger">*</span></label>
                                         <textarea id="description" class="description" name="description" required></textarea>
                                     </div>
@@ -226,7 +232,7 @@
                 var myformData = new FormData($('#complainForm')[0]);
                 $.ajax({
                     type: "post",
-                    url: "/complaint/registration/add",
+                    url: "/general-diary/register/add",
                     data: myformData,
                     cache: false,
                     processData: false,

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Mail\ComplainMail;
+use App\Mail\GdMail;
 use App\Models\Complain;
 use App\Models\District;
 use App\Models\Division;
@@ -117,6 +118,40 @@ class FrontpageController extends Controller
     }
     public function sendcomplaincode($complain){
         Mail::to($complain->email)->send(new ComplainMail($complain));
+    }
+
+    public function gdstore(Request $request)
+    {
+        $slug = Str::slug($request->name);
+        $complain = new Complain;
+        $complain->division_id = $request->division_id;
+        $complain->district_id = $request->district_id;
+        $complain->upazila_id = $request->upazila_id;
+        $complain->police_station = $request->police_station;
+        $complain->complain_no = date('ymdis').'-'.rand(0,999);
+        $complain->name = $request->name;
+        $complain->father_name = $request->father_name;
+        $complain->nid = $request->nid;
+        $complain->phone_no = $request->phone_no;
+        $complain->email = $request->email;
+        $complain->subject = $request->subject;
+        $complain->type = "GD";
+        $complain->description = $request->description;
+        $complain->status = "Pending";
+        $complain->slug = $slug.'-'.date('ymdis').'-'.rand(0,999);
+        if($request->hasFile('document')){
+            $image = $request->file('document');
+            $image_name = time().'.'.$image->getClientOriginalExtension();
+            $image->move(public_path().'/admin/assets/complain/',$image_name);
+            $complain->document = $image_name;
+            }
+        $complain->save();
+        $this->sendgdcode($complain);
+        return response()->json(['success'=>'Data Add successfully.']);
+
+    }
+    public function sendgdcode($genarel_diary){
+        Mail::to($genarel_diary->email)->send(new GdMail($genarel_diary));
     }
 
     /**
