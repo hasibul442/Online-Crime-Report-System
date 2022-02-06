@@ -19,7 +19,7 @@
                 </a>
             </div>
             <div class="table-responsive">
-                <table id="table" class="display table2 table table-hover " >
+                <table id="table" class="display table2 table table-hover table-sm" >
                     <thead>
                         <th>#</th>
                         <th>Name</th>
@@ -38,12 +38,12 @@
                         <tr>
                             <td>{{ ++$i }}</td>
                             {{-- <td>{{ substr($item->title,0,30) }}</td> --}}
-                            <td style="max-width:150px;" class="text-wrap">{{ $item->name }}</td>
-                            <td style="max-width:150px;" class="text-wrap">{{ $item->father_name }}</td>
+                            <td class="text-wrap">{{ $item->name }}</td>
+                            <td class="text-wrap">{{ $item->father_name }}</td>
 
                             {{-- <td>{{ substr($item->description,0,30) }}</td> --}}
-                            <td style="max-width:300px;" class="text-wrap">{{ $item->address}}</td>
-                            <td style="max-width:300px;" class="text-wrap">{{ $item->details}}</td>
+                            <td class="text-wrap">{{ $item->address}}</td>
+                            <td class="text-wrap">{{ $item->details}}</td>
                             <td>
                                 @if($item->photo != NULL)
                                     <img src="{{ asset('admin/assets/images/wantedlist/'.$item->photo) }}" alt="" style="height:100px;width:100px; round: none">
@@ -57,9 +57,9 @@
                                 data-id="{{ $item->id }}" {{ $item->status == 1 ? 'checked' : '' }}>
                             </td>
                             <td>
-                                <a type="button" class="btn  btn-outline-view btn-sm"><i class="mdi mdi-eye"></i></a>
-                                <a type="button" class="btn  btn-outline-edit btn-sm"><i class="mdi mdi-grease-pencil"></i></a>
-                                <a class="btn  btn-outline-delete btn-sm deletebtn" href="javascript:void(0);" data-id="{{ $item->id }}"><i class="mdi mdi-delete-forever"></i></a>
+                                <a type="button" class="btn  btn-outline-view btn-xs"><i class="mdi mdi-eye"></i></a>
+                                <a type="button" class="btn  btn-outline-edit btn-xs"><i class="mdi mdi-grease-pencil"></i></a>
+                                <a class="btn  btn-outline-delete btn-xs deletebtn" href="javascript:void(0);" data-id="{{ $item->id }}"><i class="mdi mdi-delete-forever"></i></a>
                             </td>
                         </tr>
                         @endforeach

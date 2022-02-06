@@ -4,13 +4,13 @@
   <section class="pb-5 pt-5">
     <div class="container pb-5">
         <header class="mb-5">
-            <h2 class="h3 mb-1 text-center text-danger">Wanted Person</h2>
+            {{-- <h2 class="h3 mb-1 text-center text-danger">Wanted Criminal</h2> --}}
             {{-- <p class="text-muted text-small mb-5">Lorem ipsum dolor sit amet, consetetur sadipscing elitr.</p> --}}
           </header>
 
           <div class="card ">
               <div class="card-header">
-                <h1>List of Most Wanted</h1>
+                <h1>List of Most Wanted Criminal</h1>
               </div>
               <div class="card-body">
                 <div class="table-responsive">
@@ -29,10 +29,10 @@
                             <tr>
                                 <td>{{ ++$i }}</td>
                                 <td>
-                                    Name: {{ $item->name }} <br>
-                                    S/O : {{ $item->father_name }} <br>
-                                    Address : {{ $item->address}} <br> <br>
-                                    Details : {{ $item->details}}
+                                    <span class="font-weight-bold">Name: </span> {{ $item->name }} <br>
+                                    <span class="font-weight-bold">S/O : </span> {{ $item->father_name }} <br>
+                                    <span class="font-weight-bold">Address : </span>{{ $item->address}} <br> <br>
+                                    <span class="font-weight-bold">Details : </span>{{ $item->details}}
                                 </td>
 
                                 <td>

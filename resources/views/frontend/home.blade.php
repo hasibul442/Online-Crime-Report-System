@@ -75,7 +75,7 @@
                             <svg class="svg-icon mb-3">
                               <use xlink:href="#stack-1"> </use>
                             </svg>
-                        <h2 class="h5"> <a class="stretched-link reset-anchor-inherit" href="#">Login</a></h2>
+                        <h2 class="h5"> <a class="stretched-link reset-anchor-inherit" href="{{ route('wantedlist') }}">Wanted Criminal</a></h2>
                         {{-- <p class="categories-item-number small mb-0">2 Items</p> --}}
                       </div>
                     </div>

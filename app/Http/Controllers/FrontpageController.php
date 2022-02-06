@@ -38,9 +38,11 @@ class FrontpageController extends Controller
     {
         return view('frontend.general.gd_sample');
     }
-    public function casestatus()
+    public function casestatus(Request $request)
     {
-        return view('frontend.casestatus');
+        $searchtext = $request->search_;
+        $data = Complain::where('complain_no','like','%'.$searchtext.'%')->get();
+        return view('frontend.casestatus',compact('data','searchtext'));
     }
     public function complaint()
     {
