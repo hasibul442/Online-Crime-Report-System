@@ -38,6 +38,18 @@
           <i class="mdi mdi-phone-classic menu-icon"></i>
         </a>
       </li>
+      <li class="nav-item">
+        <a class="nav-link" href="{{ route('complain.list') }}">
+          <span class="menu-title">Complain</span>
+          <i class="mdi mdi-phone-classic menu-icon"></i>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="{{ route('gd.list') }}">
+          <span class="menu-title">General Diary</span>
+          <i class="mdi mdi-phone-classic menu-icon"></i>
+        </a>
+      </li>
 
     </ul>
   </nav>

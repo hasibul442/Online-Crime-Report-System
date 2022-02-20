@@ -60,3 +60,6 @@ Route::get('/admin/wantedlist', 'App\Http\Controllers\WantedController@index')->
 Route::post('/admin/wantedlist-add', 'App\Http\Controllers\WantedController@store');
 Route::delete('/admin/wantedlist/delete/{id}','App\Http\Controllers\WantedController@destroy');
 Route::get('/admin/wantedlist/{id}/{catsts}','App\Http\Controllers\WantedController@wantedstatusstatus')->name('product-status');
+
+Route::get('admin/complain','App\Http\Controllers\ComplainController@index')->name('complain.list');
+Route::get('admin/gd','App\Http\Controllers\ComplainController@gdindex')->name('gd.list');

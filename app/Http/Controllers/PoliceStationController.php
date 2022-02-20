@@ -57,13 +57,16 @@ class PoliceStationController extends Controller
     public function store(Request $request)
     {
         $users= new User;
+        $policestation = new Policestation;
+
         $users->name = $request->name;
         $users->email = $request->email;
         $users->password = Hash::make($request['password']);
         $users->user_type = 'police_station';
         $users->save();
 
-        $policestation = new Policestation;
+
+
         $policestation->user_id = $users->id;
         $policestation->name = $request->name;
         $policestation->phone_no = $request->phone_no;
@@ -73,7 +76,11 @@ class PoliceStationController extends Controller
         $policestation->district_id = $request->district_id;
         $policestation->upazila_id = $request->upazila_id;
         $policestation->address = $request->address;
+
+
         $policestation->save();
+        $users->police_station = $policestation->id;
+        $users->save();
         return response()->json(['success'=>'Data Add successfully.']);
     }
 

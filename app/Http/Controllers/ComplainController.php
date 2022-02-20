@@ -17,9 +17,16 @@ class ComplainController extends Controller
      */
     public function index()
     {
-        //
+        $complain = Complain::where('type','Complain')->where('status','Pending')->get();
+        $complain1 = Complain::where('type','Complain')->get();
+        return view('admin.case.case', compact('complain','complain1'));
     }
-    
+    public function gdindex()
+    {
+        $gd = Complain::where('type','GD')->get();
+        return view('admin.gd.gd', compact('gd'));
+    }
+
 
 
     /**

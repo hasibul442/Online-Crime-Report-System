@@ -9,7 +9,7 @@ class Complain extends Model
 {
     use HasFactory;
     protected $table = 'complains';
-    protected $fillable = ['division_id','district_id','upazila_id','police_station','name','father_name','nid','phone_no','email','description','document','status','slug','complain_no'];
+    protected $fillable = ['division_id','district_id','upazila_id','police_station','name','father_name','nid','phone_no','email','description','document','type','status','slug','complain_no'];
 
     public function division()
     {
