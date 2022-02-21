@@ -3,13 +3,14 @@
 namespace App\Http\Controllers;
 
 use App\Models\Complain;
-use App\Models\District;
-use App\Models\Division;
-use App\Models\Upazila;
 use Illuminate\Http\Request;
 
 class ComplainController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
     /**
      * Display a listing of the resource.
      *
@@ -23,8 +24,9 @@ class ComplainController extends Controller
     }
     public function gdindex()
     {
-        $gd = Complain::where('type','GD')->get();
-        return view('admin.gd.gd', compact('gd'));
+        $gd = Complain::where('type','GD')->where('status','Pending')->get();
+        $gd1 = Complain::where('type','GD')->get();
+        return view('admin.gd.gd', compact('gd','gd1'));
     }
 
 
