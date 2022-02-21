@@ -38,15 +38,13 @@ Route::resource('/admin/hotlines', 'App\Http\Controllers\HotlineController');
 Route::get('/admin/hotlines', 'App\Http\Controllers\HotlineController@index')->name('hotline');
 Route::delete('/admin/hotlines/delete/{id}','App\Http\Controllers\HotlineController@destroy');
 
-
-
-Route::resource('/category', 'App\Http\Controllers\CategoryController')->middleware('auth');
-Route::get('/admin/category', 'App\Http\Controllers\CategoryController@index')->name('category');
-Route::post('/category-add', 'App\Http\Controllers\CategoryController@store')->name('category.add');
-Route::delete('/category/{id}', 'App\Http\Controllers\CategoryController@destroy')->name('category.delete');
-Route::get('/category-edit/{id}', 'App\Http\Controllers\CategoryController@edit');
-Route::post('/category-update/{id}', 'App\Http\Controllers\CategoryController@update');
-Route::get('/category/{id}/{catsts}','App\Http\Controllers\CategoryController@catstatus')->name('catstatus');
+// Route::resource('/category', 'App\Http\Controllers\CategoryController')->middleware('auth');
+// Route::get('/admin/category', 'App\Http\Controllers\CategoryController@index')->name('category');
+// Route::post('/category-add', 'App\Http\Controllers\CategoryController@store')->name('category.add');
+// Route::delete('/category/{id}', 'App\Http\Controllers\CategoryController@destroy')->name('category.delete');
+// Route::get('/category-edit/{id}', 'App\Http\Controllers\CategoryController@edit');
+// Route::post('/category-update/{id}', 'App\Http\Controllers\CategoryController@update');
+// Route::get('/category/{id}/{catsts}','App\Http\Controllers\CategoryController@catstatus')->name('catstatus');
 
 Route::resource('/police-station', 'App\Http\Controllers\PoliceStationController');
 Route::get('/admin/police/station', 'App\Http\Controllers\PoliceStationController@index')->name('police.division');

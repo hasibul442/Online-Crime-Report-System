@@ -40,7 +40,6 @@
                             {{-- <td>{{ substr($item->description,0,30) }}</td> --}}
                             <td style="max-width:200px;" class="text-wrap">{{ $item->description}}</td>
                             <td>
-                                <a type="button" class="btn  btn-outline-view btn-sm"><i class="mdi mdi-eye"></i></a>
                                 <a type="button" class="btn  btn-outline-edit btn-sm"><i class="mdi mdi-grease-pencil"></i></a>
                                 <a class="btn  btn-outline-delete btn-sm deletebtn" href="javascript:void(0);" data-id="{{ $item->id }}"><i class="mdi mdi-delete-forever"></i></a>
                             </td>

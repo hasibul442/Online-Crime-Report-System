@@ -105,22 +105,20 @@
                                 @if ($item->police_station ==  Auth::user()->police_station && Auth::user()->user_type == "police_station" )
                                 <tr>
                                     <td>{{ ++$i }}</td>
-                                    {{-- <td>{{ substr($item->title,0,30) }}</td> --}}
                                     <td class="text-wrap">{{ $item->name }}</td>
-                                    {{-- <td>{{ substr($item->description,0,30) }}</td> --}}
                                     <td class="text-wrap">
-                                        {{-- Division: {{ $item->division->bn_name}}<br/>
-                                        District: {{ $item->district->bn_name}}<br/>
-                                        Upazila: {{ $item->upazila->bn_name}}<br/> --}}
                                         {{ $item->policestation->name}}<br/>
 
                                     </td>
                                     <td class="text-wrap">{{ $item->phone_no}}</td>
                                     <td class="text-wrap">{{ $item->email}}</td>
                                     <td>
-                                        {{ $item->status}}
-                                        {{-- <input name="status" class="status" id="status" type="checkbox" data-toggle="toggle" data-on="Active" data-off="Deactive" data-size="xs" data-onstyle="success" data-offstyle="danger"
-                                        data-id="{{ $item->id }}" {{ $item->status == 1 ? 'checked' : '' }}> --}}
+                                        @if ( $item->status == "Pending")
+                                                <p class="text-info">{{ $item->status}}</p>
+                                        @else
+                                                <p class="text-success">{{ $item->status}}</p>
+                                        @endif
+
                                     </td>
                                     <td>
                                         <a type="button" class="btn  btn-outline-view btn-xs"><i class="mdi mdi-eye"></i></a>
@@ -129,22 +127,19 @@
                                 @elseif(Auth::user()->user_type == "super_admin")
                                 <tr>
                                     <td>{{ ++$i }}</td>
-                                    {{-- <td>{{ substr($item->title,0,30) }}</td> --}}
                                     <td class="text-wrap">{{ $item->name }}</td>
-                                    {{-- <td>{{ substr($item->description,0,30) }}</td> --}}
                                     <td class="text-wrap">
-                                        {{-- Division: {{ $item->division->bn_name}}<br/>
-                                        District: {{ $item->district->bn_name}}<br/>
-                                        Upazila: {{ $item->upazila->bn_name}}<br/> --}}
                                         {{ $item->policestation->name}}<br/>
 
                                     </td>
                                     <td class="text-wrap">{{ $item->phone_no}}</td>
                                     <td class="text-wrap">{{ $item->email}}</td>
                                     <td>
-                                        {{ $item->status}}
-                                        {{-- <input name="status" class="status" id="status" type="checkbox" data-toggle="toggle" data-on="Active" data-off="Deactive" data-size="xs" data-onstyle="success" data-offstyle="danger"
-                                        data-id="{{ $item->id }}" {{ $item->status == 1 ? 'checked' : '' }}> --}}
+                                        @if ( $item->status == "Pending")
+                                                <p class="text-info">{{ $item->status}}</p>
+                                        @else
+                                        <p class="text-success">{{ $item->status}}</p>
+                                        @endif
                                     </td>
                                     <td>
                                         <a type="button" class="btn  btn-outline-view btn-xs"><i class="mdi mdi-eye"></i></a>
