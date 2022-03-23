@@ -36,6 +36,8 @@ Route::get('/admin/dashboard', [App\Http\Controllers\HomeController::class, 'ind
 
 Route::resource('/admin/hotlines', 'App\Http\Controllers\HotlineController');
 Route::get('/admin/hotlines', 'App\Http\Controllers\HotlineController@index')->name('hotline');
+Route::get('/admin/hotlines/edit/{id}','App\Http\Controllers\HotlineController@edit');
+Route::put('/admin/hotlines/update','App\Http\Controllers\HotlineController@update');
 Route::delete('/admin/hotlines/delete/{id}','App\Http\Controllers\HotlineController@destroy');
 
 // Route::resource('/category', 'App\Http\Controllers\CategoryController')->middleware('auth');
@@ -52,6 +54,7 @@ Route::get('/admin/police/station/district/{id}', 'App\Http\Controllers\PoliceSt
 Route::get('/admin/police/station/upazila/{id}', 'App\Http\Controllers\PoliceStationController@getupazilla')->name('police.upazila');
 Route::post('/admin/police/station/add', 'App\Http\Controllers\PoliceStationController@store')->name('policestation.add');
 Route::delete('/admin/police/station/delete/{id}','App\Http\Controllers\PoliceStationController@destroy');
+Route::get('/admin/police/station/edit/{id}','App\Http\Controllers\PoliceStationController@edit');
 
 Route::resource('/wantedlist', 'App\Http\Controllers\WantedController');
 Route::get('/admin/wantedlist', 'App\Http\Controllers\WantedController@index')->name('wanted.list');

@@ -33,7 +33,7 @@
                                 $i = 0;
                             @endphp
                         @foreach ($policestation as $item)
-                        <tr>
+                        <tr id="policestation-{{ $item->id }}">
                             <td>{{ ++$i }}</td>
                             <td style="max-width:100px;" class="text-wrap">{{ $item->name }}</td>
                             <td style="max-width:100px;" class="text-wrap">{{ $item->division->bn_name }}, {{ $item->district->bn_name }}, {{ $item->upazila->bn_name }}, {{ $item->address }}</td>
@@ -41,7 +41,7 @@
                             <td class="text-right"><a href="mailto:{{ $item->email }}">{{ $item->email }}</a></td>
                             <td>
                                 <a type="button" class="btn  btn-outline-view btn-sm"><i class="mdi mdi-eye"></i></a>
-                                <a type="button" class="btn  btn-outline-edit btn-sm"><i class="mdi mdi-grease-pencil"></i></a>
+                                <a  href="javascript:void(0);" onclick="editpolicestation({{ $item->id }})" class="btn btn-outline-warning btn-sm"><i class="mdi mdi-grease-pencil"></i></a>
                                 <a class="btn  btn-outline-delete btn-sm deletebtn" href="javascript:void(0);" data-id="{{ $item->id }}"><i class="mdi mdi-delete-forever"></i></a>
                             </td>
                         </tr>
@@ -145,6 +145,92 @@
                                     <div class="form-group">
                                         <label>ঠিকানা<span class="text-danger">*</span></label>
                                         <textarea type="text" name="address" rows="5" class="form-control" required></textarea>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="float-right">
+                            <button type="submit" class="btn  btn-sm btn-gradient-primary mr-2">Submit</button>
+                            <button type="button" class="btn btn-sm btn-light" data-dismiss="modal">Cancel</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    {{-- Data Add Modal End --}}
+    {{-- Data add Model Start --}}
+    <div class="modal fade bd-example-modal-lg" id="policeStationEditModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+        aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <div class="text-center">
+                        <h3 class="modal-title" id="exampleModalLabel">Police Station Update</h3>
+                    </div>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form class="forms-sample" id="policeStationEditForm" method="POST" enctype="multipart/form-data">
+                        @csrf
+                        {{-- <ul class="alert alert-warning d-none" id="save_errorList"></ul> --}}
+                        <input type="hidden" name="id" id="id" class="id">
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label for="name">থানার নাম<span class="text-danger">*</span></label>
+                                        <input type="text" name="name" id="name" class="name form-control" placeholder="Title" required />
+                                    </div>
+                                </div>
+
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label>ফোন নম্বর<span class="text-danger">*</span></label>
+                                        <input type="text" name="phone_no" id="phone_no" class="phone_no form-control" placeholder="+88000" required />
+                                    </div>
+                                </div>
+
+
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label for="division_id">বিভাগ<span class="text-danger">*</span></label>
+                                        <select name="division_id" id="division_id" class="division_id form-control">
+                                            <option selected disabled>বিভাগ নির্বাচন করুন</option>
+                                            @foreach ($division as $item )
+                                                    <option value="{{ $item->id }}">{{ $item->bn_name }}</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label for="district_id">জেলা<span class="text-danger">*</span></label>
+                                        <select name="district_id" id="district_id" class="district_id form-control">
+                                            <option selected disabled>জেলা নির্বাচন করুন</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label for="upazila_id">উপজেলা<span class="text-danger">*</span></label>
+                                        <select name="upazila_id" id="upazila_id" class="upazila_id form-control">
+                                            <option selected disabled>উপজেলা নির্বাচন করুন</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label>ঠিকানা<span class="text-danger">*</span></label>
+                                        <textarea type="text" name="address" rows="5" class="address form-control" required></textarea>
                                     </div>
                                 </div>
                             </div>
@@ -283,6 +369,21 @@
                 });
                 }
         });
+
+        function editpolicestation(id){
+            $.get("/admin/police/station/edit/"+id, function(policestation){
+                $('.id').val(policestation.id);
+                $('.name').val(policestation.name);
+                $('.phone_no').val(policestation.phone_no);
+                $('.division_id').val(policestation.division_id);
+                $('#district_id').val(policestation.district_id);
+                $('#upazila_id').val(policestation.upazila_id);
+                $('.address').val(policestation.address);
+                // $('.description1').val(policestation.description);
+                // $('#balance').val(bank.balance);
+                $('#policeStationEditModal').modal("toggle");
+            });
+        }
 </script>
 <script>
     $(document).ready(function() {

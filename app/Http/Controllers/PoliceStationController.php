@@ -101,9 +101,10 @@ class PoliceStationController extends Controller
      * @param  \App\Models\Policestation  $policestation
      * @return \Illuminate\Http\Response
      */
-    public function edit(Policestation $policestation)
+    public function edit($id)
     {
-        //
+        $policestation = Policestation::find($id);
+        return response()->json($policestation);
     }
 
     /**

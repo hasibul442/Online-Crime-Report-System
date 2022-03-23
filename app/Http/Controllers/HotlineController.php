@@ -74,9 +74,10 @@ class HotlineController extends Controller
      * @param  \App\Models\Hotline  $hotline
      * @return \Illuminate\Http\Response
      */
-    public function edit(Hotline $hotline)
+    public function edit($id)
     {
-        //
+        $hotline = Hotline::find($id);
+        return response()->json($hotline);
     }
 
     /**
@@ -86,9 +87,15 @@ class HotlineController extends Controller
      * @param  \App\Models\Hotline  $hotline
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Hotline $hotline)
+    public function update(Request $request)
     {
-        //
+        $hotline = Hotline::find($request->id);
+        $hotline->title = $request->title1;
+        $hotline->phone_number = $request->phone_number1;
+        $hotline->description = $request->description1;
+        // $position->company_id = $request->company_id;
+        $hotline->update();
+        return response()->json(['success'=>'Data Add successfully.']);
     }
 
     /**
@@ -104,5 +111,5 @@ class HotlineController extends Controller
         return response()->json(['success'=>'Data Delete successfully.']);
 
     }
-    
+
 }
