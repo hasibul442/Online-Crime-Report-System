@@ -29,7 +29,7 @@
                         @php
                              $i = 0;
                          @endphp
-                        @foreach ($gd as $item)
+                        @foreach ($gd1 as $item)
                             @if ($item->police_station ==  Auth::user()->police_station && Auth::user()->user_type == "police_station" )
                                 <tr>
                                     <td>{{ ++$i }}</td>
@@ -64,7 +64,7 @@
                                 <td>
                                     {{-- {{ $item->status}} --}}
                                     <input name="status" class="status" id="status" type="checkbox" data-toggle="toggle" data-on="Solve" data-off="Pending" data-size="xs" data-onstyle="success" data-offstyle="info"
-                                    data-id="{{ $item->id }}" {{ $item->status == 1 ? 'checked' : '' }}>
+                                    data-id="{{ $item->id }}" {{ $item->status == "Solved" ? 'checked' : '' }}>
                                 </td>
                                 <td>
                                     <a type="button" class="btn  btn-outline-view btn-xs" href="{{ route('complain.details',$item->id) }}"><i class="mdi mdi-eye"></i></a>

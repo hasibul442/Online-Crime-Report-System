@@ -90,9 +90,10 @@ class PoliceStationController extends Controller
      * @param  \App\Models\Policestation  $policestation
      * @return \Illuminate\Http\Response
      */
-    public function show(Policestation $policestation)
+    public function show($id)
     {
-        //
+        $policestation = Policestation::find($id);
+        return view('admin.police-station.details', compact('policestation'));
     }
 
     /**

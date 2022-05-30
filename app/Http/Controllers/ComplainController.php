@@ -19,14 +19,22 @@ class ComplainController extends Controller
     public function index()
     {
         $complain = Complain::where('type','Complain')->where('status','Pending')->get();
+        return view('admin.case.case', compact('complain'));
+    }
+    public function allcase(){
         $complain1 = Complain::where('type','Complain')->get();
-        return view('admin.case.case', compact('complain','complain1'));
+        return view('admin.case.allcase',compact('complain1'));
     }
     public function gdindex()
     {
         $gd = Complain::where('type','GD')->where('status','Pending')->get();
+
+        return view('admin.gd.gd', compact('gd'));
+    }
+    public function allgdindex()
+    {
         $gd1 = Complain::where('type','GD')->get();
-        return view('admin.gd.gd', compact('gd','gd1'));
+        return view('admin.gd.allgd', compact('gd1'));
     }
 
 
@@ -58,9 +66,10 @@ class ComplainController extends Controller
      * @param  \App\Models\Complain  $complain
      * @return \Illuminate\Http\Response
      */
-    public function show(Complain $complain)
+    public function complainshow($id)
     {
-        //
+        $complain = Complain::find($id);
+        return view('admin.case.details',compact('complain'));
     }
 
     /**
@@ -72,6 +81,12 @@ class ComplainController extends Controller
     public function edit(Complain $complain)
     {
         //
+    }
+    public function complainstatus($id,$status){
+        $complain = Complain::find($id);
+        $complain->status = $status;
+        $complain->update();
+        return response()->json(['success'=>'Status changed successfully.']);
     }
 
     /**

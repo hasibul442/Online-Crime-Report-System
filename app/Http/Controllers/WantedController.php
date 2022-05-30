@@ -63,9 +63,10 @@ class WantedController extends Controller
      * @param  \App\Models\Wanted  $wanted
      * @return \Illuminate\Http\Response
      */
-    public function show(Wanted $wanted)
+    public function show($id)
     {
-        //
+        $wanted = Wanted::find($id);
+        return view('admin.wantedlist.details',compact('wanted'));
     }
 
     /**

@@ -40,7 +40,7 @@
                             <td class="text-right"><a href="tel:{{ $item->phone_no }}">{{ $item->phone_no }}</a></td>
                             <td class="text-right"><a href="mailto:{{ $item->email }}">{{ $item->email }}</a></td>
                             <td>
-                                <a type="button" class="btn  btn-outline-view btn-sm"><i class="mdi mdi-eye"></i></a>
+                                <a type="button" href="{{ route('policestation.details', $item->id) }}" class="btn  btn-outline-view btn-sm"><i class="mdi mdi-eye"></i></a>
                                 <a  href="javascript:void(0);" onclick="editpolicestation({{ $item->id }})" class="btn btn-outline-warning btn-sm"><i class="mdi mdi-grease-pencil"></i></a>
                                 <a class="btn  btn-outline-delete btn-sm deletebtn" href="javascript:void(0);" data-id="{{ $item->id }}"><i class="mdi mdi-delete-forever"></i></a>
                             </td>

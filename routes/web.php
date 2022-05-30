@@ -55,12 +55,19 @@ Route::get('/admin/police/station/upazila/{id}', 'App\Http\Controllers\PoliceSta
 Route::post('/admin/police/station/add', 'App\Http\Controllers\PoliceStationController@store')->name('policestation.add');
 Route::delete('/admin/police/station/delete/{id}','App\Http\Controllers\PoliceStationController@destroy');
 Route::get('/admin/police/station/edit/{id}','App\Http\Controllers\PoliceStationController@edit');
+Route::get('/admin/police/station/details/{id}','App\Http\Controllers\PoliceStationController@show')->name('policestation.details');
 
 Route::resource('/wantedlist', 'App\Http\Controllers\WantedController');
 Route::get('/admin/wantedlist', 'App\Http\Controllers\WantedController@index')->name('wanted.list');
+Route::get('/admin/wantedlist', 'App\Http\Controllers\WantedController@index')->name('wanted.list');
 Route::post('/admin/wantedlist-add', 'App\Http\Controllers\WantedController@store');
+Route::get('/admin/wantedlist/details/{id}', 'App\Http\Controllers\WantedController@show')->name('wanted.details');
 Route::delete('/admin/wantedlist/delete/{id}','App\Http\Controllers\WantedController@destroy');
 Route::get('/admin/wantedlist/{id}/{catsts}','App\Http\Controllers\WantedController@wantedstatusstatus')->name('product-status');
 
-Route::get('admin/complain','App\Http\Controllers\ComplainController@index')->name('complain.list');
-Route::get('admin/gd','App\Http\Controllers\ComplainController@gdindex')->name('gd.list');
+Route::get('/admin/complain','App\Http\Controllers\ComplainController@index')->name('complain.list');
+Route::get('/admin/allcomplain','App\Http\Controllers\ComplainController@allcase')->name('allcomplain.list');
+Route::get('/admin/gd','App\Http\Controllers\ComplainController@gdindex')->name('gd.list');
+Route::get('/admin/allgd','App\Http\Controllers\ComplainController@allgdindex')->name('allgd.list');
+Route::get('/admin/complain/details/{id}','App\Http\Controllers\ComplainController@complainshow')->name('complain.details');
+Route::get('/admin/complain/{id}/{catsts}','App\Http\Controllers\ComplainController@complainstatus')->name('complain-status');

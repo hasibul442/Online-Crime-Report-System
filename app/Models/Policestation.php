@@ -10,7 +10,11 @@ class Policestation extends Model
     use HasFactory;
     protected $table = 'policestations';
     protected $fillable = ['district_id','division_id','upazila_id','address','name','phone_no','email','user_id'];
-    
+
+    public function userinfo()
+    {
+        return $this->belongsTo(User::class,'user_id');
+    }
     public function division()
     {
         return $this->belongsTo(Division::class,'division_id');
