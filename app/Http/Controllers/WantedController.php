@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Wanted;
+use Illuminate\Support\Facades\File;
 use Illuminate\Http\Request;
 
 class WantedController extends Controller
@@ -75,9 +76,10 @@ class WantedController extends Controller
      * @param  \App\Models\Wanted  $wanted
      * @return \Illuminate\Http\Response
      */
-    public function edit(Wanted $wanted)
+    public function edit($id)
     {
-        //
+        $wanted = Wanted::find($id);
+        return view('admin.wantedlist.edit', compact('wanted'));
     }
 
     /**
@@ -87,9 +89,27 @@ class WantedController extends Controller
      * @param  \App\Models\Wanted  $wanted
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Wanted $wanted)
+    public function update(Request $request,$id)
     {
-        //
+        $wanted = Wanted::find($id);
+        $wanted->name = $request->name;
+        $wanted->father_name = $request->father_name;
+        $wanted->address = $request->address;
+        $wanted->gander = $request->gander;
+        $wanted->details = $request->details;
+        $wanted->status = '1';
+        if($request->hasFile('photo')){
+            $destination = public_path().'/admin/assets/images/wantedlist/'.$wanted->photo;
+            if(File::exists($destination)){
+                File::delete($destination);
+            }
+            $image = $request->file('photo');
+            $image_name = time().'.'.$image->getClientOriginalExtension();
+            $image->move(public_path().'/admin/assets/images/wantedlist/',$image_name);
+            $wanted->photo = $image_name;
+            }
+        $wanted->update();
+        return redirect()->route('wanted.list');
     }
 
     /**

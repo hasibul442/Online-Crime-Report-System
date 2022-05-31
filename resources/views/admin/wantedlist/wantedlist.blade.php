@@ -58,7 +58,7 @@
                             </td>
                             <td>
                                 <a type="button" class="btn  btn-outline-view btn-xs" href="{{ route('wanted.details', $item->id) }}"><i class="mdi mdi-eye"></i></a>
-                                <a type="button" class="btn  btn-outline-edit btn-xs"><i class="mdi mdi-grease-pencil"></i></a>
+                                <a type="button" class="btn  btn-outline-edit btn-xs" href="{{ route('wanted.edit', $item->id) }}"><i class="mdi mdi-grease-pencil"></i></a>
                                 <a class="btn  btn-outline-delete btn-xs deletebtn" href="javascript:void(0);" data-id="{{ $item->id }}"><i class="mdi mdi-delete-forever"></i></a>
                             </td>
                             @endif

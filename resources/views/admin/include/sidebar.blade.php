@@ -22,7 +22,7 @@
       </li>
  @if (Auth::user()->user_type == "super_admin" )
       <li class="nav-item">
-        <a class="nav-link" href="#">
+        <a class="nav-link" href="{{ route("users") }}">
           <span class="menu-title">User</span>
           <i class="mdi mdi-phone-classic menu-icon"></i>
         </a>

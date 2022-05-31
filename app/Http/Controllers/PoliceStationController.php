@@ -105,7 +105,7 @@ class PoliceStationController extends Controller
     public function edit($id)
     {
         $policestation = Policestation::find($id);
-        return response()->json($policestation);
+        return view('admin.police-station.edit', compact('policestation'));
     }
 
     /**
@@ -115,9 +115,20 @@ class PoliceStationController extends Controller
      * @param  \App\Models\Policestation  $policestation
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Policestation $policestation)
+    public function update(Request $request, $id)
     {
-        //
+        $policestation = Policestation::find($request->id);
+        $policestation->name = $request->name;
+        $policestation->phone_no = $request->phone_no;
+
+        $policestation->division_id = $request->division_id;
+        $policestation->district_id = $request->district_id;
+        $policestation->upazila_id = $request->upazila_id;
+        $policestation->address = $request->address;
+
+
+        $policestation->update();
+        return redirect()->route('police.division');
     }
 
     /**
